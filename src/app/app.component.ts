@@ -1,20 +1,25 @@
 import { Component } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 import { User } from "./user";
-import { UserService } from "./user.service";
+import { UserListFilter } from "./state";
+import { UserListUsecase } from "./usecase/user-list.usecase";
 
 @Component({
-  selector: "app-root",
+  selector: "my-app",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  constructor(public userService: UserService) {}
+  users$ = this.userList.users$;
+  userListFilter$ = this.userList.filter$;
+
+  constructor(private userList: UserListUsecase) {}
 
   ngOnInit() {
-    this.userService.fetchUsers();
+    this.userList.fetchUsers();
   }
 
-  onClick() {
-    console.log("click");
+  setUserListFilter(value: UserListFilter) {
+    this.userList.setNameFilter(value.nameFilter);
   }
 }
