@@ -1,22 +1,17 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Component } from "@angular/core";
 import { User } from "./user";
+import { UserService } from "./user.service";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  users: User[] = [];
-
-  constructor(private http: HttpClient) {}
+  constructor(public userService: UserService) {}
 
   ngOnInit() {
-    this.http.get<{ data: User[] }>("https://reqres.in/api/users").subscribe(resp => {
-      this.users = resp.data;
-    });
+    this.userService.fetchUsers();
   }
 
   onClick() {
