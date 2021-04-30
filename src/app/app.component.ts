@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User } from "./user";
 
@@ -6,6 +6,7 @@ import { User } from "./user";
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   users: User[] = [];
@@ -16,5 +17,9 @@ export class AppComponent {
     this.http.get<{ data: User[] }>("https://reqres.in/api/users").subscribe(resp => {
       this.users = resp.data;
     });
+  }
+
+  onClick() {
+    console.log("click");
   }
 }
