@@ -11,6 +11,8 @@ import { Store } from "./service/store.service";
 import { UserListFilterComponent } from "./view/user-list-filter/user-list-filter.component";
 import { UserDetailPageComponent } from "./view/user-detail-page/user-detail-page.component";
 import { UserApiService } from "./service/user-api.service";
+import { ExplicitSubscribeComponent } from './view/explicit-subscribe/explicit-subscribe.component';
+import { AsyncPipeComponent } from './view/async-pipe/async-pipe.component';
 
 @NgModule({
   imports: [BrowserModule, ReactiveFormsModule, HttpClientModule, AppRoutingModule],
@@ -20,6 +22,8 @@ import { UserApiService } from "./service/user-api.service";
     UserListComponent,
     UserListFilterComponent,
     UserDetailPageComponent,
+    ExplicitSubscribeComponent,
+    AsyncPipeComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

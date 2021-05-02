@@ -1,25 +1,17 @@
 import { Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { User } from "./user";
-import { UserListFilter } from "./state";
-import { UserListUsecase } from "./usecase/user-list.usecase";
+import { DataService } from "./service/data.service";
 
 @Component({
   selector: "my-app",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+  template: `<button (click)="updateValue()">Update Value</button>`,
+  // templateUrl: "./app.component.html",
+  // styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  users$ = this.userList.users$;
-  userListFilter$ = this.userList.filter$;
+  constructor(private dataService: DataService) {}
 
-  constructor(private userList: UserListUsecase) {}
-
-  ngOnInit() {
-    this.userList.fetchUsers();
-  }
-
-  setUserListFilter(value: UserListFilter) {
-    this.userList.setNameFilter(value.nameFilter);
+  updateValue() {
+    const value = new Date().toISOString();
+    this.dataService.setValue(value);
   }
 }
